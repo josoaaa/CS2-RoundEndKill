@@ -19,10 +19,13 @@ public class RoundEndKill : BasePlugin
     private HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
     {   
         var players = Utilities.GetPlayers();
-        foreach (var player in players)
-        {
-            player.CommitSuicide(false, true);
-        }
+        
+        AddTimer(2.0f, () => {
+            foreach (var player in players)
+            {
+                player.CommitSuicide(false, true);
+            }
+        });
 
         return HookResult.Continue;
     }
